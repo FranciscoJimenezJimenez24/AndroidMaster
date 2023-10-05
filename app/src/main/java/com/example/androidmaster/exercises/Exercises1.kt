@@ -8,6 +8,7 @@ fun main(){
     printNotificationSummary(eveningNotification)
 }
 
+// test
 fun printNotificationSummary(numberOfMessages:Int){
     if (numberOfMessages in 1..99){
         println("You have $numberOfMessages notifications")
