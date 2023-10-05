@@ -26,7 +26,7 @@ class ResultIMCActivity : AppCompatActivity() {
         when(result){
             in 0.00 .. 18.50 -> {
                 tvResult.text="Low"
-                tvDescription.text="You are suboptimal for your weigh and height"
+                tvDescription.text="You are suboptimal for your weight and height"
             }
             in 18.50 .. 24.99 -> {
                 tvResult.text="Normal"
