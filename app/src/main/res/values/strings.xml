@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AndroidMaster</string>
     <string name="hello">Hello</string>
+
+    <!--TODOApp-->
+    <string name="todo_title">Espabila</string>
+    <string name="todo_category">Categories:</string>
 </resources>
