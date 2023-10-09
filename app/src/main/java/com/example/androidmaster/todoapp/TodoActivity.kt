@@ -113,6 +113,7 @@ class TodoActivity : AppCompatActivity() {
         categories[position].isSelected=!categories[position].isSelected
         categoriesAdapter.notifyItemChanged(position)
         updateTask()
+
     }
 
     //This method warning to the Adapter that there are new items
