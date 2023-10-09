@@ -5,4 +5,11 @@
     <!--TODOApp-->
     <string name="todo_title">Espabila</string>
     <string name="todo_category">Categories:</string>
+    <string name="todo_tasks">Tasks:</string>
+
+    <string name="todo_dialog_add_task">Add task</string>
+    <string name="todo_dialog_category_business">Business</string>
+    <string name="todo_dialog_category_other">Other</string>
+    <string name="todo_dialog_category_personal">Personal</string>
+    <string name="todo_dialog_add_task_button">Create task</string>
 </resources>
