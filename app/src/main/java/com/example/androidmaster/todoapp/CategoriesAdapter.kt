@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidmaster.R
-import java.util.Locale.Category
 
 /*
     This is the adapter
  */
-class CategoriesAdapter(private var categories: List<TaskCategory>) :
+class CategoriesAdapter(private var categories: List<TaskCategory>,private val onItemSelected:(Int)->Unit) :
     RecyclerView.Adapter<CategoriesViewHolder>() {
     /*
         This method creates a visual view
@@ -29,7 +28,7 @@ class CategoriesAdapter(private var categories: List<TaskCategory>) :
         This method send the information to onCreateViewHolder to create the view
      */
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.render(categories[position])
+        holder.render(categories[position],onItemSelected)
     }
 
     /*

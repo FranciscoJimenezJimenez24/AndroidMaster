@@ -90,18 +90,36 @@ class TodoActivity : AppCompatActivity() {
         layoutManager is responsible that the view could be horizontal or vertical
      */
     private fun InitUI() {
-        categoriesAdapter=CategoriesAdapter(categories)
+        categoriesAdapter=CategoriesAdapter(categories) {position->updateCategories(position)}
         rvCategories.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rvCategories.adapter=categoriesAdapter
 
-        taskAdapter= TaskAdapter(tasks)
+        taskAdapter= TaskAdapter(tasks) {
+                position -> onItemSelected(position)
+        }
         //Default is vertical
         rvTasks.layoutManager=LinearLayoutManager(this)
         rvTasks.adapter=taskAdapter
     }
+    /*
+        This method modify the item to selected to not selected and otherwise
+     */
+    private fun onItemSelected(position:Int){
+        tasks[position].isSelected=!tasks[position].isSelected
+        updateTask()
+    }
+    //notifyItemChanged detect that a item is modified
+    private fun updateCategories(position: Int){
+        categories[position].isSelected=!categories[position].isSelected
+        categoriesAdapter.notifyItemChanged(position)
+        updateTask()
+    }
 
     //This method warning to the Adapter that there are new items
     private fun updateTask(){
+        val selectedCategories:List<TaskCategory> =categories.filter { it.isSelected }
+        val newTasks=tasks.filter { selectedCategories.contains(it.category) }
+        taskAdapter.tasks=newTasks
         //notifyDataSetChanged update the data
         taskAdapter.notifyDataSetChanged()
     }
