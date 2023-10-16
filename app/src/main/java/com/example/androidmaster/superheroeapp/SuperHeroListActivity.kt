@@ -1,5 +1,6 @@
 package com.example.androidmaster.superheroeapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -72,5 +73,11 @@ class SuperHeroListActivity : AppCompatActivity() {
             .baseUrl("https://superheroapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    private fun navigateToDetail(id:String){
+        val intent= Intent(this,DetailSuperHeroActivity::class.java)
+        intent.putExtra("",id)
+        startActivity(intent)
     }
 }
