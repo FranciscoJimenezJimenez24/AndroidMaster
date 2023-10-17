@@ -26,63 +26,66 @@ class SuperHeroListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySuperHeroListBinding
     private lateinit var retrofit: Retrofit
 
-    private lateinit var adapter:SuperHeroAdapter
+    private lateinit var adapter: SuperHeroAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivitySuperHeroListBinding.inflate(layoutInflater)
+        binding = ActivitySuperHeroListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        retrofit=getRetrofit()
+        retrofit = getRetrofit()
         initUI()
     }
 
     private fun initUI() {
-        binding.svSearchEngine.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.svSearchEngine.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchByName(query.orEmpty())
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?)=false
+            override fun onQueryTextChange(newText: String?) = false
 
         })
 
-        adapter = SuperHeroAdapter {superHeroId->navigateToDetail(superHeroId)}
+        adapter = SuperHeroAdapter { superHeroId -> navigateToDetail(superHeroId) }
         binding.rvSuperHero.setHasFixedSize(true)
-        binding.rvSuperHero.layoutManager=LinearLayoutManager(this)
-        binding.rvSuperHero.adapter=adapter
+        binding.rvSuperHero.layoutManager = LinearLayoutManager(this)
+        binding.rvSuperHero.adapter = adapter
     }
+
     //this method request to internet the super heroes that exists in the api
-    private fun searchByName(query:String){
-        binding.progressBar.isVisible=true
+    private fun searchByName(query: String) {
+        binding.progressBar.isVisible = true
         CoroutineScope(Dispatchers.IO).launch {
-            val myResponse: Response<SuperHeroDataResponse> =retrofit.create(ApiService::class.java).getSuperHeroes(query)
-            if (myResponse.isSuccessful){
-                val response:SuperHeroDataResponse?=myResponse.body()
-                if (response!=null){
-                    Log.i("paco",response.toString())
+            val myResponse: Response<SuperHeroDataResponse> =
+                retrofit.create(ApiService::class.java).getSuperHeroes(query)
+            if (myResponse.isSuccessful) {
+                val response: SuperHeroDataResponse? = myResponse.body()
+                if (response != null) {
+                    Log.i("paco", response.toString())
                     //principal thread
                     runOnUiThread {
                         adapter.updateList(response.superHeroes)
-                        binding.progressBar.isVisible=false
+                        binding.progressBar.isVisible = false
                     }
                 }
-                Log.i("paco","works")
-            }else{
-                Log.i("paco","Doesn't works")
+                Log.i("paco", "works")
+            } else {
+                Log.i("paco", "Doesn't works")
             }
         }
     }
 
-    private fun getRetrofit():Retrofit{
+    private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://superheroapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     //this function is connected with the lambda function of SuperHeroAdapter
-    private fun navigateToDetail(id:String){
-        val intent= Intent(this,DetailSuperHeroActivity::class.java)
-        intent.putExtra(EXTRA_ID,id)
+    private fun navigateToDetail(id: String) {
+        val intent = Intent(this, DetailSuperHeroActivity::class.java)
+        intent.putExtra(EXTRA_ID, id)
         startActivity(intent)
     }
 }
