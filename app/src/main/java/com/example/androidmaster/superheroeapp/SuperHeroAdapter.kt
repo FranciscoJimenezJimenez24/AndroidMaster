@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidmaster.R
 
-class SuperHeroAdapter(private var superHeroList: List<SuperHeroItemResponse> = emptyList()) :
+//a function lambda, you can use that like a parameter
+class SuperHeroAdapter(private var superHeroList: List<SuperHeroItemResponse> = emptyList(),
+    private val onItemSelected:(String) ->Unit) :
     RecyclerView.Adapter<SuperHeroViewHolder>() {
 
     fun updateList(superHeroList: List<SuperHeroItemResponse>){
@@ -19,7 +21,7 @@ class SuperHeroAdapter(private var superHeroList: List<SuperHeroItemResponse> = 
     }
 
     override fun onBindViewHolder(viewHolder: SuperHeroViewHolder, position: Int) {
-        viewHolder.bind(superHeroList[position])
+        viewHolder.bind(superHeroList[position],onItemSelected)
     }
 
     override fun getItemCount() = superHeroList.size

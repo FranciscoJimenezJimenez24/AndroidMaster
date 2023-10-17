@@ -1,6 +1,7 @@
 package com.example.androidmaster.superheroeapp
 
 import com.google.gson.annotations.SerializedName
+//this class returns a list of super heroes
 
 data class SuperHeroDataResponse(@SerializedName("response") val response: String,
                                  @SerializedName("results") val superHeroes:List<SuperHeroItemResponse>) {

@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidmaster.R
 import com.example.androidmaster.databinding.ActivitySuperHeroListBinding
+import com.example.androidmaster.superheroeapp.DetailSuperHeroActivity.Companion.EXTRA_ID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +19,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class SuperHeroListActivity : AppCompatActivity() {
+    /*
+    binding: with this variable, we can access to all
+    the components without having to declare them one by one
+    */
     private lateinit var binding: ActivitySuperHeroListBinding
     private lateinit var retrofit: Retrofit
 
@@ -41,12 +46,12 @@ class SuperHeroListActivity : AppCompatActivity() {
 
         })
 
-        adapter = SuperHeroAdapter()
+        adapter = SuperHeroAdapter {superHeroId->navigateToDetail(superHeroId)}
         binding.rvSuperHero.setHasFixedSize(true)
         binding.rvSuperHero.layoutManager=LinearLayoutManager(this)
         binding.rvSuperHero.adapter=adapter
     }
-
+    //this method request to internet the super heroes that exists in the api
     private fun searchByName(query:String){
         binding.progressBar.isVisible=true
         CoroutineScope(Dispatchers.IO).launch {
@@ -74,10 +79,10 @@ class SuperHeroListActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
+    //this function is connected with the lambda function of SuperHeroAdapter
     private fun navigateToDetail(id:String){
         val intent= Intent(this,DetailSuperHeroActivity::class.java)
-        intent.putExtra("",id)
+        intent.putExtra(EXTRA_ID,id)
         startActivity(intent)
     }
 }
