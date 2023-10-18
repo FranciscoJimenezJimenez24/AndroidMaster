@@ -29,7 +29,7 @@ class DetailSuperHeroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailSuperHeroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val id = intent.getStringExtra(EXTRA_ID).orEmpty()
+        val id:String = intent.getStringExtra(EXTRA_ID).orEmpty()
         getSuperHeroInformation(id)
     }
 
@@ -64,12 +64,12 @@ class DetailSuperHeroActivity : AppCompatActivity() {
 
     private fun updateHeight(view: View, stat: String) {
         val params = view.layoutParams
-        params.height = pxToDP(stat.toFloat())
+        params.height = pxToDp(stat.toFloat())
         view.layoutParams = params
     }
 
     //this method change pixel to dp
-    private fun pxToDP(px: Float): Int {
+    private fun pxToDp(px: Float): Int {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, px, resources.displayMetrics)
             .roundToInt()
     }
