@@ -12,4 +12,12 @@
     <string name="todo_dialog_category_other">Other</string>
     <string name="todo_dialog_category_personal">Personal</string>
     <string name="todo_dialog_add_task_button">Create task</string>
+    <!--Settings-->
+    <string name="settings_dark_mode">Dark mode</string>
+    <string name="settings_dark_mode_description">Active the dark mode to have a visual change</string>
+    <string name="settings_bluetooth">Bluetooth</string>
+    <string name="settings_bluetooth_description">Connect the peripherals without cables</string>
+    <string name="settings_sound">Sound</string>
+    <string name="settings_vibrate">Vibrate in the calls</string>
+
 </resources>
