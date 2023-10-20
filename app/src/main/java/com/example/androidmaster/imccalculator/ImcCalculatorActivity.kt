@@ -124,11 +124,23 @@ class ImcCalculatorActivity : AppCompatActivity() {
     }
 
     private fun setWeight() {
-        tvWeight.text = currentWeight.toString()
+        if (currentWeight<=0){
+            currentWeight=1
+            tvWeight.text = currentWeight.toString()
+        }else{
+            tvWeight.text = currentWeight.toString()
+        }
+
     }
 
     private fun setAge() {
-        tvAge.text = currentAge.toString()
+        if (currentAge<=0){
+            currentAge=1
+            tvAge.text = currentAge.toString()
+        }else{
+            tvAge.text = currentAge.toString()
+        }
+
     }
 
     //This method change the value of isMaleSelected and isFemaleSelected

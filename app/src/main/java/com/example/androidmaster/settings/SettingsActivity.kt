@@ -52,9 +52,7 @@ class SettingsActivity : AppCompatActivity() {
                         binding.rsSound.setValues(settingsModel.sound.toFloat())
                         firstTime=!firstTime
                     }
-
                 }
-
             }
         }
 
