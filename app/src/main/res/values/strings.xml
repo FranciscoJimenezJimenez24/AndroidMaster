@@ -2,6 +2,9 @@
     <string name="app_name">AndroidMaster</string>
     <string name="hello">Hello</string>
 
+    <!--FirstApp-->
+    <string name="write_your_name">Write your name</string>
+    <string name="press_me">Press me</string>
     <!--TODOApp-->
     <string name="todo_title">Espabila</string>
     <string name="todo_category">Categories:</string>

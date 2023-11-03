@@ -86,7 +86,7 @@ class TodoActivity : AppCompatActivity() {
     /*
         For a RecyclerView to work, consist of two parts:
         Adapter: is the class which connect all the information with the RecyclerView
-        ViewHolder: is the class which show thatQ
+        ViewHolder: is the class which show that
         layoutManager is responsible that the view could be horizontal or vertical
      */
     private fun InitUI() {
